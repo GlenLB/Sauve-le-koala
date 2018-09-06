@@ -12,7 +12,7 @@ L'objectif principal de ce projet a été de m'améliorer en :
 * TypeScript
 * Java EE
 
-Vous trouverez les codes TypeScript principaux du jeu (fichiers *"levelX.ts"*) dans le répertoire *"/web/Game/ts/"*.
+**Vous trouverez les codes TypeScript principaux du jeu (fichiers *"levelX.ts"*) dans le répertoire *"/web/Game/ts/"*.**
 
 
 ------------------------------
