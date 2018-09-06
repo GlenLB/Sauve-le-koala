@@ -22,3 +22,5 @@ Le code du jeu est largement perfectible, notamment en mettant en place une appr
 De plus les classes des fichiers TS principaux ont donc un très fort couplage, ce qui rend toute modification assez compliquée.
 
 J'ai cependant préféré commencer de nouveaux projets sur de bonnes bases plutôt que de modifier celui-ci.
+
+Ce projet a tout de même été très formateur pour moi.
