@@ -1,0 +1,380 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    border-bottom: 2px dashed silver;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.bandeau_success {
+    padding: 10px;
+    color: white;
+    background-color: yellowgreen;
+    font-weight: bold;
+}
+
+.bandeau_error {
+    padding: 10px;
+    color: white;
+    background-color: red;
+    font-weight: bold;
+}
+
+#inscription, #connexion, #btn-inscription-submit, #btn-connect-submit {
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    padding: 25px;
+    border-radius: 40px;
+    background: linear-gradient(#fcf3a1, gold);
+    border: 2px solid #d3be00;
+}
+
+#inscription:hover, #connexion:hover, #btn-inscription-submit:hover, #btn-connect-submit:hover {
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    padding: 25px;
+    border-radius: 40px;
+    background: gold;
+    border: 2px solid #d3be00;
+}
+
+#inscription:active, #connexion:active, #btn-inscription-submit:active, #btn-connect-submit:active {
+    color: white;
+    font-weight: bold;
+    padding: 25px;
+    border-radius: 40px;
+    background: gold;
+    box-shadow: inset 0px 3px 4px #d3be00;
+    border: 1px solid #d3be00;
+}
+
+h1 {
+    font-family: 'Faster One', cursive;
+    font-size: 40px;
+    color: grey;
+}
+
+#form-inscription, #form-connect {
+    opacity: 0;
+    height: 0px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 2px dashed silver;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin: 0px;
+}
+
+#form-inscription input, #form-connect input {
+    margin-bottom: 10px;
+}
+
+#form-inscription h4, #form-connect h4 {
+    color: blueviolet;
+}
+
+#form-inscription i, #form-connect i {
+    color: grey;
+    font-style: normal;
+}
+
+#btn-inscription-submit, #btn-connect-submit {
+    margin-top: 10px;
+}
+
+#espace-utilisateur {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 2px dashed silver;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    margin: 0px;
+}
+
+#deconnexion, #suppression-compte {
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    padding: 25px;
+    border-radius: 40px;
+    background: linear-gradient(#FFA6A6, red);
+    border: 2px solid #BD0000;
+}
+
+#deconnexion:hover, #suppression-compte:hover {
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    padding: 25px;
+    border-radius: 40px;
+    background: red;
+    border: 2px solid #BD0000;
+}
+
+#deconnexion:active, #suppression-compte:active {
+    color: white;
+    font-weight: bold;
+    padding: 25px;
+    border-radius: 40px;
+    background: red;
+    box-shadow: inset 0px 3px 4px #BD0000;
+    border: 1px solid #BD0000;
+}
+
+#level-titre {
+    font-family: 'Faster One', cursive;
+    font-size: 35px;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    color: gold;
+}
+
+#canvasContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    transition: opacity .2s;
+    opacity: 0;
+}
+
+#containerBtn {
+    display: none;
+    justify-content: center;
+}
+
+#stuff {
+    display : flex;
+    justify-content: space-around;
+    align-items : center;
+    color : gold;
+    font-weight : bold;
+}
+
+.not-full {
+    color: silver;
+}
+
+.full {
+    color: red;
+}
+
+.fa-heart {
+    padding-right : 2px;
+    padding-left : 2px;
+}
+
+#canvasBackground {
+    margin: 0px;
+    /*margin-bottom: -3px;  Gap entre les deux */
+    padding: 0px;
+}
+
+#drawCommands, #drawWin {
+    font-style: normal;
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    color: gold;
+    opacity: 0;
+    z-index: -1;
+}
+
+.canvasBall, #canvasPaddle, .canvasBonus {
+    position: absolute;
+    opacity: 0;
+    z-index: 3;
+}
+
+#soundControl {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    font-size: 50px;
+}
+
+#buttonWin {
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: yellowgreen;
+    box-shadow: 0px;
+    border: 0px;
+    border-radius: 10px;
+}
+
+.partages-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    border: 2px dashed silver;
+    width: 500px;
+    margin: auto;
+    margin-bottom: 100px;
+    border-radius: 40px;
+    min-height: 130px;
+}
+
+#h2-partage {
+    color: gold;
+}
+
+.btn-partages-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cookie-banner {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    margin: 0px;
+    padding: 10px;
+    background: gold;
+    color: white;
+    font-weight: bold;
+    z-index: 100000;
+}
+
+#cookie-banner span {
+    cursor: pointer;
+    padding: 5px;
+    background: yellowgreen;
+    border-radius: 5px;
+}
+
+#cookie-banner span:active {
+    cursor: pointer;
+    background: olivedrab;
+}
+
+#container-footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+footer {
+    background-color: dimgrey;
+    color: white;
+    margin-top: 200px;
+    padding: 10px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fa-user-circle {
+    font-size: 24px;
+    color: gold;
+    cursor: pointer;
+}
+
+
+
+/* RESPONSIVE */
+@media all and (max-width: 900px) {
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-bottom: 2px dashed silver;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #inscription {
+        order: 2;
+        margin-bottom: 20px;
+    }
+
+    #connexion {
+        order: 3;
+        margin-bottom: 30px;
+    }
+
+    #inscription, #connexion {
+        color: white;
+        font-weight: bold;
+        padding: 20px;
+        border-radius: 35px;
+        background: linear-gradient(#fcf3a1, gold);
+        border: 2px solid #d3be00;
+    }
+
+    #inscription:hover, #connexion:hover {
+        cursor: pointer;
+        color: white;
+        font-weight: bold;
+        padding: 20px;
+        border-radius: 35px;
+        background: gold;
+        border: 2px solid #d3be00;
+    }
+
+    #inscription:active, #connexion:active {
+        color: white;
+        font-weight: bold;
+        padding: 20px;
+        border-radius: 35px;
+        background: linear-gradient(#ccc100, gold 10%);
+        border: 1px solid #d3be00;
+    }
+
+    h1 {
+        text-align: center;
+        font-family: 'Faster One', cursive;
+        font-size: 35px;
+        color: grey;
+    }
+
+    #btnLeft, #btnPlay, #btnRight {
+        background: linear-gradient(#fcf3a1, gold);
+        font-weight: bold;
+        color: white;
+    }
+
+    .partages-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+        border: 2px dashed silver;
+        width: auto;
+        max-width: 500px;
+        margin: auto;
+        margin-bottom: 80px;
+        border-radius: 40px;
+    }
+
+    #h2-partage {
+        color: gold;
+    }
+
+    .btn-partages-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

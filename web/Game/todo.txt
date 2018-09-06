@@ -1,0 +1,54 @@
+
+
+Créer vidéo youtube anglais mot clé brick breaker
+
+Musique quand on perd
+
+Compteur de temps bonus
+
+Rajouter fiche commandes
+
+Possibilité revenir niveaux précédents
+
+Garder son actif si son activé quand on change de page
+
+Possibilité de changer adresse mail, mot de passe, prénom.
+
+Bonus actif quand touché sur le côté
+
+Jeu gagné si toutes les briques détruites ?
+
+Différencier les bonus (différentes étoiles)
+
+HTTPS
+
+permettre note joueurs (à afficher dans les SERP)
+
+Pop-up inscris toi pour sauvegarder ta progression quand fermeture
+
+
+
+Refonte Node.js
+
+
+
+Permettre 4 bonus en même temps ? (car bug bonus)
+Ajouter plus de bonus
+
+dossier "dist" avec fichier js compressé (possible de compresser avec "tsconfig.json" ? Sinon webpack, gulp ou autre)
+
+Revoir Player.play etc : ce doit être simplifié
+
+classements des meilleurs scores (base de données) 1 classement pour chaque niveau et chaque niveau de difficulté
+
+partager son score sur les réseaux sociaux (Facebook, Twitter)
+
+
+
+ajouter pub vidéos pour jeux (div par dessus canvas ?) quand joueur perd ou entre les niveaux
+
+achats in-app : acheter vies, accéder à tel niveau sans avoir tous les points, etc.
+
+faire de la pub sur les réseaux sociaux (vidéo du jeu)
+
+publier le jeu sur Facebook instant games, android, etc.
