@@ -24,6 +24,8 @@ L'objectif principal de ce projet a été de m'améliorer en :
 
 J'ai créé le jeu dans une approche Orientée Objet. J'ai créé un système de sessions, et d'inscription / connexion pour sauvegarder la progression des joueurs. J'ai déployé une base de données MySQL pour stocker les données des joueurs, avec hashage des mots de passe.
 
+J'ai aussi développé le front-end du site web du jeu en HTML5, CSS3, JavaScript, et ce de manière responsive pour que le design s'adapte aux ordinateurs, tablettes et téléphones.
+
 
 
 ## Améliorations
