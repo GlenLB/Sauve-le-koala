@@ -1,6 +1,6 @@
-# Sauve-le-koala : jeu de casse-briques en TypeScript
+# Sauve-le-koala : brick breaker en TypeScript
 
-Sauve le koala est un jeu de casse-briques 2D que j'ai créé en **TypeScript** dans l'élément HTML5 Canvas.
+Sauve le koala est un jeu de casse brique 2D que j'ai créé en **TypeScript** dans l'élément HTML5 Canvas.
 Back-end réalisé en **Java EE** sur serveur Tomcat.
 
 
