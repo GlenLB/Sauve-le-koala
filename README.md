@@ -15,19 +15,29 @@ L'objectif principal de ce projet a été de m'améliorer en :
 * Programmation Orienté Objet
 * TypeScript
 * Java EE
+* Base de données (MySQL)
 
 **Vous trouverez les codes TypeScript principaux du jeu (fichiers *"levelX.ts"*) dans le répertoire *"/web/Game/ts/"*.**
+
+------------------------------
+
+## Développement
+
+J'ai créé le jeu dans une approche Orientée Objet. J'ai créé un système de sessions, et d'inscription / connexion pour sauvegarder la progression des joueurs. J'ai déployé une base de données MySQL pour stocker les données des joueurs, avec hashage des mots de passe.
 
 
 ------------------------------
 
-Le code du jeu est largement perfectible, notamment en mettant en place une approche modulaire des fichiers TS, avec des exports et imports de classes pour une meilleure lisibilité du fichier principal.
+# Améliorations
 
-De plus les classes des fichiers TS principaux ont donc un très fort couplage, ce qui rend toute modification assez compliquée.
+Le code du jeu est largement perfectible, notamment en mettant en place une approche modulaire des fichiers TypeScript, avec des exports et imports de classes pour une meilleure lisibilité du fichier principal.
+
+De plus les classes des fichiers TypeScript principaux ont un fort couplage, ce qui rend toute modification et ajout de fonctionnalité assez complexe.
 
 J'ai cependant préféré commencer de nouveaux projets sur de bonnes bases plutôt que de modifier celui-ci.
 
 Ce projet a tout de même été très formateur pour moi.
 
+--------------------------------
 
 ![Capture d'écran du jeu](https://webcomet.fr/sauve-le-koala/capture_jeu.png)
