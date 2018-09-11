@@ -3,11 +3,10 @@
 Sauve le koala est un jeu de casse-briques 2D créé en **TypeScript** dans l'élément HTML5 Canvas.
 Back-end réalisé en **Java EE** sur serveur Tomcat.
 
-------------------------------
 
 ![Capture d'écran du jeu](https://webcomet.fr/sauve-le-koala/capture_jeu_horizontale.png)
 
-------------------------------
+
 
 ## Objectifs de ce projet
 
@@ -19,14 +18,14 @@ L'objectif principal de ce projet a été de m'améliorer en :
 
 **Vous trouverez les codes TypeScript principaux du jeu (fichiers *"levelX.ts"*) dans le répertoire *"/web/Game/ts/"*.**
 
-------------------------------
+
 
 ## Développement
 
 J'ai créé le jeu dans une approche Orientée Objet. J'ai créé un système de sessions, et d'inscription / connexion pour sauvegarder la progression des joueurs. J'ai déployé une base de données MySQL pour stocker les données des joueurs, avec hashage des mots de passe.
 
 
-------------------------------
+
 
 # Améliorations
 
