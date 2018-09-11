@@ -1,6 +1,6 @@
-# Sauve-le-koala : jeu de casse briques réalisé en TypeScript
+# Sauve-le-koala : jeu de casse-briques en TypeScript
 
-Sauve le koala est un jeu de casse-briques 2D créé en **TypeScript** dans l'élément HTML5 Canvas.
+Sauve le koala est un jeu de casse-briques 2D que j'ai créé en **TypeScript** dans l'élément HTML5 Canvas.
 Back-end réalisé en **Java EE** sur serveur Tomcat.
 
 
@@ -12,9 +12,9 @@ Back-end réalisé en **Java EE** sur serveur Tomcat.
 
 L'objectif principal de ce projet a été de m'améliorer en : 
 * Programmation Orienté Objet
-* TypeScript
-* Java EE
-* Base de données (MySQL)
+* **TypeScript**
+* **Java EE**
+* Base de données (**MySQL**)
 
 **Vous trouverez les codes TypeScript principaux du jeu (fichiers *"levelX.ts"*) dans le répertoire *"/web/Game/ts/"*.**
 
@@ -23,7 +23,6 @@ L'objectif principal de ce projet a été de m'améliorer en :
 ## Développement
 
 J'ai créé le jeu dans une approche Orientée Objet. J'ai créé un système de sessions, et d'inscription / connexion pour sauvegarder la progression des joueurs. J'ai déployé une base de données MySQL pour stocker les données des joueurs, avec hashage des mots de passe.
-
 
 
 
