@@ -5,6 +5,10 @@ Back-end réalisé en **Java EE** sur serveur Tomcat.
 
 ------------------------------
 
+![Capture d'écran du jeu](https://webcomet.fr/sauve-le-koala/capture_jeu_horizontale.png)
+
+------------------------------
+
 ## Objectifs de ce projet
 
 L'objectif principal de ce projet a été de m'améliorer en : 
@@ -24,3 +28,6 @@ De plus les classes des fichiers TS principaux ont donc un très fort couplage, 
 J'ai cependant préféré commencer de nouveaux projets sur de bonnes bases plutôt que de modifier celui-ci.
 
 Ce projet a tout de même été très formateur pour moi.
+
+
+![Capture d'écran du jeu](https://webcomet.fr/sauve-le-koala/capture_jeu.png)
