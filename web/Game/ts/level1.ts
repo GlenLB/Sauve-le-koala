@@ -16,7 +16,10 @@ class DeviceClass {
     tablette: boolean;
     desktop: boolean;
 
-    find() {
+    /**
+     * Trouve le type d'appareil de l'utilisateur en fonction de la taille de son écran
+     */
+    find(): void {
         if (window.matchMedia("(max-width: 500px)").matches) {
             this.mobile = true;
             this.tactile = true;
