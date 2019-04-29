@@ -4,9 +4,9 @@
  */
 
 
-
 /**
  * Définit le type d'appareil de l'utilisateur
+ * entre {mobile, tablette, écran large}
  */
 class DeviceClass {
     canvasWidth: number;
@@ -43,7 +43,7 @@ class DeviceClass {
 
 
 /**
- * Un [[Canvas]] a un canvas avec une taille définie
+ * Un [[Canvas]] a un élément HTML5 canvas avec une taille définie
  */
 class CanvasClass {
     canvas: any = document.getElementById("canvas");
@@ -60,7 +60,10 @@ class CanvasClass {
         this.init();
     }
 
-    init() {
+    /**
+     * Initialise le canvas
+     */
+    init(): void {
         this.canvas.width = this.width;
         this.canvas.height = this.height;
         window.addEventListener("load", () => {
@@ -69,11 +72,14 @@ class CanvasClass {
         }, false);
     }
 
-    clearAll() {
+    /**
+     * Efface le contenu actuel du canvas
+     */
+    clearAll(): void {
         this.ctx.clearRect(0, 0, this.width, this.height);
     }
 
-    displayAll() {
+    displayAll(): void {
         this.canvas.style.opacity = "1";
         Player.drawCmd.style.opacity = "0";
         Ball.canvas.style.opacity = "1";
@@ -87,7 +93,7 @@ class CanvasClass {
         AudioClass.hideControl();
     }
 
-    hideAll() {
+    hideAll(): void {
         this.canvas.style.opacity = "0";
         Ball.canvas.style.opacity = "0";
         if (BonusClass.ball2) {
@@ -116,22 +122,22 @@ class AudioClass {
         this.elt = elt;
     }
 
-    play() {
+    play(): void {
         this.elt.currentTime = 0;
         if (this.elt.paused) {
             this.elt.play();
         }
     }
 
-    pause() {
+    pause(): void {
         this.elt.pause();
     }
 
-    reset() {
+    reset(): void {
         this.elt.currentTime = 0;
     }
 
-    static displayControl() {
+    static displayControl(): void {
         if (AudioClass.firstCall) {
             window.addEventListener("load", () => {
                 AudioClass.control.setAttribute("class", "fas fa-volume-down");
@@ -163,11 +169,11 @@ class AudioClass {
         }
     }
 
-    static hideControl() {
+    static hideControl(): void {
         AudioClass.control.style.opacity = "0";
     }
 
-    static loadAll() {
+    static loadAll(): void {
         // Sounds
         BrickSound.play(); BrickSound.pause();
         PaddleSound.play(); PaddleSound.pause();
@@ -207,9 +213,9 @@ class ScoreClass {
     score: number = 0;
 
     /**
-     * Increment the user's score
+     * Incremente le score
      */
-    incrementScore() {
+    incrementScore(): void {
         this.score++;
         if (this.score < 10) {
             this.displayScore.innerHTML = "SCORE : 0" + this.score;
@@ -252,7 +258,7 @@ class TactileButtonsClass {
     /**
      * Affiche les boutons pour jouer sur les appareils tactiles
      */
-    display() {
+    display(): void {
         this.containerBtn.style.display = "flex";
         this.containerBtn.style.top = this.canvasBCR.top + Canvas.height + 10 + "px";
         if (!Device.mobile) {
@@ -292,7 +298,7 @@ class EvtClass {
         EvtClass.arrowRight = false;
     }
 
-    listen() {
+    listen(): void {
         switch (this.type) {
             case "keyboard":
                 window.addEventListener("keydown", (event: KeyboardEvent) => {
@@ -331,11 +337,11 @@ class EvtClass {
     }
 
     /**
-     * Fonction appelée lorsqu'un évènement tactile se produit
+     * Méthode appelée lorsqu'un évènement tactile se produit
      * @param event l'évènement tactile
      * @param direction indiquée par le bouton cliqué
      */
-    touchstart(event: TouchEvent, direction: string) {
+    touchstart(event: TouchEvent, direction: string): void {
         event.stopPropagation();
         event.preventDefault();
         switch (direction) {
@@ -355,7 +361,7 @@ class EvtClass {
      * @param event l'évènement tactile
      * @param direction indiquée par le bouton cliqué
      */
-    touchleave(event: TouchEvent, direction: string) {
+    touchleave(event: TouchEvent, direction: string): void {
         event.stopPropagation();
         event.preventDefault();
         switch (direction) {
@@ -380,10 +386,10 @@ class EvtClass {
     }
 
     /**
-     * When a key is pressed
-     * @param event contains the name of the key
+     * Quand une touche du clavier est pressée
+     * @param event contient le nom de la touche du clavier
      */
-    keyDownHandler(event: KeyboardEvent) {
+    keyDownHandler(event: KeyboardEvent): void {
         switch (event.key) {
             case "ArrowLeft" || "Left":
                 event.preventDefault();
@@ -405,10 +411,10 @@ class EvtClass {
     }
 
     /**
-     * When a key is not pressed anymore
-     * @param event contains the name of the key
+     * Quand une touche du clavier est relachée
+     * @param event contient le nom de la touche du clavier
      */
-    keyUpHandler(event: KeyboardEvent) {
+    keyUpHandler(event: KeyboardEvent): void {
         switch (event.key) {
             case "ArrowLeft" || "Left":
                 event.preventDefault();
@@ -484,7 +490,7 @@ class Sprite {
         this.elt.src = this.src;
     }
 
-    draw() {
+    draw(): void {
         if (this.load) {
             Canvas.ctx.beginPath();
             Canvas.ctx.drawImage(this.elt, this.x, this.y);
@@ -492,6 +498,9 @@ class Sprite {
         }
     }
 
+    /**
+     * @return true ssi si tous les sprites sont chargés
+     */
     static AllLoaded(): boolean {
         return Brick.load && BrickCracked.load && IronBrick.load && IronBrickCracked.load && IronBrickCrackedAgain.load && Paddle.load && Koala.load
     }
@@ -530,19 +539,20 @@ class BrickClass extends Sprite {
         }
     }
 
-    static initArray() {
+    /**
+     * Initialise la grille de briques du jeu
+     */
+    static initArray(): void {
         BrickClass.array = [];
         let i: number = 0;
-
         BrickClass.nbRow = 6;
         BrickClass.nbColumn = 5;
 
         for (let c = 0; c < BrickClass.nbColumn; c++) {
             BrickClass.array[c] = [];
             for (let r = 0; r < BrickClass.nbRow; r++) {
-                BrickClass.array[c][r] = {x: 0, y: 0, lives: 1, number: i};
+                BrickClass.array[c][r] = { x: 0, y: 0, lives: 1, number: i };
                 i++;
-
                 // Bonus
                 if (c == 0 && r == 6) {
                     BrickClass.array[c][r].bonus = "bigPaddle";
@@ -560,7 +570,10 @@ class BrickClass extends Sprite {
         }
     }
 
-    static drawBricks() {
+    /**
+     * Dessine à l'écran les briques du jeu
+     */
+    static drawBricks(): void {
         for (let c = 0; c < BrickClass.nbColumn; c++) {
             for (let r = 0; r < BrickClass.nbRow; r++) {
                 let b = BrickClass.array[c][r];
@@ -577,21 +590,25 @@ class BrickClass extends Sprite {
         }
     }
 
-    static reDrawBrick(num: number) {
+    /**
+     * @param num le numéro de la brique à redessiner
+     */
+    static reDrawBrick(num: number): void {
         for (let c = 0; c < BrickClass.nbColumn; c++) {
             for (let r = 0; r < BrickClass.nbRow; r++) {
                 let b = BrickClass.array[c][r];
                 if (b.number === num) {
-                    Canvas.ctx.clearRect(b.x - 1, b.y - 1, Brick.width + 2, Brick.height + 1); // Les - 1, + 1 et + 2 rajoutés pour bug gap mobile
+                    // Les - 1, + 1 et + 2 rajoutés pour bug gap mobile
+                    Canvas.ctx.clearRect(b.x - 1, b.y - 1, Brick.width + 2, Brick.height + 1);
                 }
             }
         }
     }
 
     /**
-     * Check if a brick is in the list of brocken bricks
-     * @param brickNumber the number of the brick to check
-     * @return true ssi brickNumber is included in the list
+     * Vérifie qu'une brique est dans la liste des briques cassées
+     * @param brickNumber le numéro de la brique à vérifier
+     * @return true ssi brickNumber est dans la liste
      */
     static isInclude(brickNumber: number): boolean {
         return (BrickClass.listDestroyBricks.indexOf(brickNumber) >= 0);
@@ -599,7 +616,7 @@ class BrickClass extends Sprite {
 }
 
 /**
- * Paddle
+ * Le paddle du jeu dirigé par le joueur et sur lequel la balle rebondit
  */
 class PaddleClass extends Sprite {
     width: number;
@@ -629,9 +646,9 @@ class PaddleClass extends Sprite {
     }
 
     /**
-     * Move the paddle
+     * Fait bouger le paddle
      */
-    move() {
+    move(): void {
         if (!Device.mobile) {
             if (EvtClass.arrowLeft && this.x > 0) {
                 this.x -= 7;
@@ -653,7 +670,10 @@ class PaddleClass extends Sprite {
         }
     }
 
-    draw() {
+    /**
+     * Dessine le paddle
+     */
+    draw(): void {
         if (this.load && !this.hasBeenDrawn) {
             this.ctx.drawImage(this.elt, 0, 0);
             this.hasBeenDrawn = true;
@@ -665,7 +685,7 @@ class PaddleClass extends Sprite {
 
 
 /**
- * Balle
+ * Balle principale du jeu
  */
 class BallClass extends Sprite {
     width: number;
@@ -702,7 +722,10 @@ class BallClass extends Sprite {
         BallClass.nbBall++;
     }
 
-    speedBall() {
+    /**
+     * Définit la vitesse de la balle en fonction de la taille d'écran de l'utilisateur
+     */
+    speedBall(): void {
         if (!Device.mobile) {
             if (!this.reverse) {
                 this.ym = 5;
@@ -722,7 +745,7 @@ class BallClass extends Sprite {
         }
     }
 
-    draw() {
+    draw(): void {
         if (this.load && !this.hasBeenDrawn) {
             this.ctx.drawImage(this.elt, 0, 0);
             this.hasBeenDrawn = true;
@@ -731,12 +754,15 @@ class BallClass extends Sprite {
         this.canvas.style.left = Canvas.canvas.getBoundingClientRect().left + this.x + "px";
     }
 
-    move() {
+    move(): void {
         this.x += this.xm;
         this.y += this.ym;
     }
 
-    static restartBall(Ball: BallClass) {
+    /**
+     * @param Ball la balle à faire redémarrer
+     */
+    static restartBall(Ball: BallClass): void {
         Ball.x = Paddle.x + Paddle.width / 2 - Ball.width / 2;
         Ball.y = Canvas.height - Paddle.height - Ball.height - 5;
     }
@@ -767,9 +793,9 @@ class PlayerClass {
     }
 
     /**
-     * Check if the gamer has won
+     * Vérifie si le joueur a gagné
      */
-    win() {
+    win(): void {
         let includes7: boolean = BrickClass.isInclude(7);
         let includes8: boolean = BrickClass.isInclude(8);
         let includes9: boolean = BrickClass.isInclude(9);
@@ -799,7 +825,10 @@ class PlayerClass {
         }
     }
 
-    drawLives() {
+    /**
+     * Dessine à l'écran les vies du joueur
+     */
+    drawLives(): void {
         if (this.lives == 3) {
             this.heart1.style.color = "red";
             this.heart2.style.color = "red";
@@ -820,9 +849,9 @@ class PlayerClass {
     }
 
     /**
-     * Display a message if the gamer has won
+     * Affiche un message à l'écran si le joueur a gagné
      */
-    drawWin() {
+    drawWin(): void {
         this.drawW.style.top = Canvas.canvas.getBoundingClientRect().top + window.scrollY + Canvas.height / 2 - this.drawW.clientHeight / 2 + "px";
         this.drawW.style.left = Canvas.canvas.getBoundingClientRect().left + Canvas.width / 2 - this.drawW.clientWidth / 2 + "px";
         this.drawW.style.zIndex = "10";
@@ -844,9 +873,9 @@ class PlayerClass {
     }
 
     /**
-     * Draw commands on pause
+     * Affiche à l'écran les commandes de jeu si le jeu est en pause
      */
-    drawCommands() {
+    drawCommands(): void {
         this.drawCmd.style.top = Canvas.canvas.getBoundingClientRect().top + window.scrollY + Canvas.height / 2 - this.drawCmd.clientHeight / 2 + "px";
         this.drawCmd.style.left = Canvas.canvas.getBoundingClientRect().left + Canvas.width / 2 - this.drawCmd.clientWidth / 2 + "px";
         this.drawCmd.style.zIndex = "10";
@@ -866,12 +895,17 @@ class PlayerClass {
 
 
 /**
- * Pour les collisions du jeu
+ * Gère les collisions du jeu
  */
 class Collisions {
-    static gap: number; // Gap possible
+    // Gap possible
+    static gap: number;
 
-    static brickCollision(Ball: BallClass) {
+    /**
+     * Gère les collisions d'une balle avec les briques
+     * @param Ball la balle concernée
+     */
+    static brickCollision(Ball: BallClass): void {
         for (let c = 0; c < BrickClass.nbColumn; c++) {
             for (let r = 0; r < BrickClass.nbRow; r++) {
                 let b = BrickClass.array[c][r];
@@ -891,15 +925,12 @@ class Collisions {
                             // Haut ou bas touché
                             Ball.ym = -Ball.ym;
                         }
-
                         b.lives -= 1;
                         Score.incrementScore();
                         BrickClass.reDrawBrick(b.number);
-
                         if (AudioClass.soundOK) {
                             BrickSound.play();
                         }
-
                         if (b.lives === 0) {
                             // On ajoute la brique à la liste des briques détruites
                             BrickClass.listDestroyBricks.push(b.number);
@@ -927,9 +958,11 @@ class Collisions {
     }
 
     /**
-     * Collision of walls ant paddle with the ball
+     * Gère les collisions d'une balle avec les murs et le paddle
+     * @param Ball la balle concernée
+     * @param nb le numéro de la balle pour savoir si c'est une balle de Bonus ou la balle principale
      */
-    static generalCollision(Ball: BallClass, nb: number) {
+    static generalCollision(Ball: BallClass, nb: number): void {
         // La balle touche le paddle
         if ((Ball.y + Ball.height >= Canvas.height - Paddle.height && (Ball.x + Ball.width >= Paddle.x && Ball.x <= Paddle.x + Paddle.width)) && !Paddle.paddleTouched) {
             Ball.ym = -Ball.ym;
@@ -1047,7 +1080,7 @@ class BonusClass {
         this.move();
     }
 
-    move() {
+    move(): void {
         if (!this.hasTouchedPaddle) {
             this.y += this.ym;
             this.draw();
@@ -1061,7 +1094,7 @@ class BonusClass {
         }
     }
 
-    draw() {
+    draw(): void {
         if (this.load) {
             if (!this.hasBeenDrawn) {
                 this.canvas.style.opacity = 1;
@@ -1073,7 +1106,7 @@ class BonusClass {
         }
     }
 
-    touch() {
+    touch(): void {
         if ((this.x + this.width >= Paddle.x && this.x <= Paddle.x + Paddle.width) && (this.y + this.height >= Paddle.y && this.y + this.height <= Paddle.y + Paddle.height) && !this.hasTouchedPaddle) {
             this.hasTouchedPaddle = true;
             switch (this.type) {
@@ -1118,7 +1151,7 @@ class BonusClass {
         }
     }
 
-    cancel() {
+    cancel(): void {
         switch (this.type) {
             case "bigPaddle":
                 !Device.mobile ? Paddle.width = 70 : Paddle.width = 35;
@@ -1184,7 +1217,10 @@ class BonusClass {
         }
     }
 
-    static moveAll() {
+    /**
+     * Bouge tous les bonus présents sur le jeu
+     */
+    static moveAll(): void {
         if (BonusClass.bonusInstance) {
             BonusClass.Bonus.move();
         }
@@ -1199,7 +1235,7 @@ class BonusClass {
     /**
      * Trois balles sur le terrain, il faut en garder une au minimum
      */
-    tripleBall() {
+    tripleBall(): void {
         this.canvas.style.opacity = 0; // Efface le bonus
         BonusClass.Ball2 = new BallClass("ball_silver");
         BonusClass.Ball3 = new BallClass("ball_silver");
@@ -1219,7 +1255,7 @@ class BonusClass {
     /**
      * Le paddle s'aggrandit
      */
-    bigPaddle() {
+    bigPaddle(): void {
         if (BonusClass.bonusPaddle) {
             if (this.name == "Bonus" && BonusClass.Bonus2.type == "smallPaddle") {
                 BonusClass.Bonus2.cancel();
@@ -1254,7 +1290,7 @@ class BonusClass {
     /**
      * Le paddle rétrécit
      */
-    smallPaddle() {
+    smallPaddle(): void {
         if (BonusClass.bonusPaddle) {
             if (this.name == "Bonus" && BonusClass.Bonus2.type == "bigPaddle") {
                 BonusClass.Bonus2.cancel();
@@ -1291,7 +1327,7 @@ class BonusClass {
     /**
      * La vitesse de la balle augmente
      */
-    speedBall() {
+    speedBall(): void {
         this.canvas.style.opacity = 0; // Efface le bonus
         if (Ball.ball) {
             this.speed(Ball);
@@ -1304,7 +1340,11 @@ class BonusClass {
         }
     }
 
-    speed(Ball: BallClass) {
+    /**
+     * Accélère une balle
+     * @param Ball la balle à accélérer
+     */
+    speed(Ball: BallClass): void {
         if (!Device.mobile) {
             Ball.xm > 0 ? Ball.xm += 2 : Ball.xm -= 2;
             Ball.ym > 0 ? Ball.ym += 2 : Ball.ym -= 2;
@@ -1323,61 +1363,64 @@ class BonusClass {
 
 
 
-//*******************
-//    CONTEXTE
-//*******************
+//-----------------------------------------------------
+//    MAIN                                             
+//-----------------------------------------------------
 
-// On trouve le type d'appareil de l'utilisateur
+//-----------------------------------------------------
+//    CONTEXTE                                            
+//-----------------------------------------------------
+
+// Trouve le type d'appareil de l'utilisateur
 let Device: DeviceClass = new DeviceClass();
 Device.find();
 
-// On créé le canvas
+// Créé le canvas
 let Canvas: CanvasClass = new CanvasClass(Device.canvasWidth, Device.canvasHeight);
 
-// On met en place les écouteurs d'évènements
+// Met en place les écouteurs d'évènements pour le clavier ou les boutons tactiles des appareils tactiles
 if (!Device.tactile) {
     var KeyEvt: EvtClass = new EvtClass("keyboard");
     KeyEvt.listen();
 } else {
-    // On affiche les boutons tactiles
+    // Affiche les boutons tactiles
     var BtnTactiles: TactileButtonsClass = new TactileButtonsClass();
     BtnTactiles.display();
     var TactileEvt: EvtClass = new EvtClass("tactile");
     TactileEvt.listen();
 }
 
-// On affiche le background
+// Affiche le background
 let Background: BackgroundClass = new BackgroundClass();
 
-// On affiche Stuff
+// Affiche Stuff
 let Stuff: StuffClass = new StuffClass();
 
 
 // Audio
-// Sounds
+// Bruits
 AudioClass.displayControl();
 let BrickSound: AudioClass = new AudioClass(document.getElementsByTagName("audio")[0]);
 let PaddleSound: AudioClass = new AudioClass(document.getElementsByTagName("audio")[2]);
 let BonusSound: AudioClass = new AudioClass(document.getElementsByTagName("audio")[3]);
 let GoodPadleBonusSound: AudioClass = new AudioClass(document.getElementsByTagName("audio")[4]);
 let BadPadleBonusSound: AudioClass = new AudioClass(document.getElementsByTagName("audio")[5]);
-
-// Music
+// Musique
 let WinLevelSound: AudioClass = new AudioClass(document.getElementsByTagName("audio")[7]);
 let GameOverSound: AudioClass = new AudioClass(document.getElementsByTagName("audio")[8]);
 
 
 
 
-//********************************
+//-----------------------------------
 //        PERSONNAGES
-//********************************
+//-----------------------------------
 
 
 // Joueur
 let Player: PlayerClass = new PlayerClass();
 
-// Bricks
+// Briques
 let Brick: BrickClass = new BrickClass("brick_yellow");
 let BrickCracked: BrickClass = new BrickClass("brick_yellow_cracked");
 let IronBrick: BrickClass = new BrickClass("iron_brick");
@@ -1393,7 +1436,7 @@ Koala.y = (2 * (Brick.height + BrickClass.padding)) + BrickClass.offsetY;
 // Paddle
 let Paddle: PaddleClass = new PaddleClass("paddle_yellow");
 
-// Ball
+// Balle
 let Ball: BallClass = new BallClass("ball_silver");
 
 // Score
@@ -1406,16 +1449,14 @@ let Score = new ScoreClass();
 
 
 /**
- * Fonction principale 60fps
+ * Fonction principale d'animation environ 60fps
  */
-function loop() {
+function loop(): void {
 
     if (Player.play && !Player.hasWon) {
-
         if (!Canvas.alldisplayed) {
             Canvas.displayAll();
         }
-
         if (Ball.ball) {
             Ball.draw();
         }
@@ -1441,7 +1482,7 @@ function loop() {
             Collisions.generalCollision(BonusClass.Ball3, 3);
         }
 
-        // Move the ball
+        // Déplace la balle
         if (BallClass.balleLancee) {
             if (Ball.ball) {
                 Ball.move();
@@ -1461,13 +1502,13 @@ function loop() {
                 BallClass.restartBall(BonusClass.Ball3);
             }
         }
-        // Move the paddle
+        // Déplace le paddle
         Paddle.move();
 
         // Bonus
         BonusClass.moveAll();
 
-        // Check if the gamer has won
+        // Vérifie si le joueur a gagné
         Player.win();
 
     } else {
@@ -1479,30 +1520,29 @@ function loop() {
         }
     }
 
-
     requestAnimationFrame(loop);
 
 }
 
 
-
+/**
+ * Lance le jeu quand la page et tous les sprites sont chargés
+ */
 window.addEventListener("load", () => {
-
     if (Sprite.AllLoaded()) {
         Ball.x = Paddle.x + Paddle.width / 2 - Ball.width / 2;
         Ball.y = Canvas.height - Paddle.height - Ball.height - 5;
-        // Draw a ball
+        // Dessine à l'écran la balle
         Ball.draw();
-        // Draw a simple paddle
+        // Dessine à l'écran le paddle
         Paddle.draw();
-        // Draw the cat
+        // Dessine à l'écran le koala
         Koala.draw();
-        // Draw bricks
+        // Dessine à l'écran les briques
         BrickClass.drawBricks();
     }
-
+    // Appelle l'animation
     requestAnimationFrame(loop);
-
 }, false);
 
-export {};
+export { };

@@ -4,7 +4,6 @@
  */
 
 
-
 /**
  * Définit le type d'appareil de l'utilisateur
  */
