@@ -1457,7 +1457,6 @@ let Score = new ScoreClass();
  * Fonction principale d'animation environ 60fps
  */
 function loop(): void {
-
     if (Player.play && !Player.hasWon) {
         if (!Canvas.alldisplayed) {
             Canvas.displayAll();
@@ -1526,7 +1525,6 @@ function loop(): void {
     }
 
     requestAnimationFrame(loop);
-
 }
 
 
